@@ -1,0 +1,23 @@
+A = input('Matrix A: ');
+%input matrix, 0s, guess, it an dtol
+sol = input('Solution vector: ');
+G = input('Guess: ');
+iter = input ('Iterations: ');
+e = input('Tol: ');
+N = length(sol);
+zer = zeros(N,1);
+%calculates jacobi method for guess and vect
+
+for j=1:iter
+    for i=1:N
+        zer(i) = (sol(i)/A(i,i)) - (A(i, [1:i-1,i+1:N])*G([1:i-1,i+1:N]))/A(i,i);
+    end
+    fprintf('Iteration number: %d\n',j)
+    zer
+    if abs(zer-G) < e
+        break
+    end
+
+    G = zer;
+end
+
